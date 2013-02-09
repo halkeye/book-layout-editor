@@ -6,7 +6,7 @@
     <head>
         <meta charset="utf-8"/>
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-        <title></title>
+        <title>Page Editor - {{page_title}}</title>
         <meta name="description" content=""/>
         <meta name="viewport" content="width=device-width"/>
         <link rel="stylesheet" href="styles/main.css"/>
@@ -17,20 +17,36 @@
         <!--[if lt IE 7]>
             <p class="chromeframe">You are using an outdated browser. <a href="http://browsehappy.com/">Upgrade your browser today</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
         <![endif]-->
-        
+
         <!--[if lt IE 9]>
             <script src="scripts/vendor/es5-shim.min.js"></script>
             <script src="scripts/vendor/json3.min.js"></script>
         <![endif]-->
-
-        <!-- Add your site or application content here -->
-        <div class="container" ng-view></div>
+        <div class="container">
+          <div class="span2 bs-docs-sidebar">
+            <ul class="nav nav-list bs-docs-sidenav" ng-controller="NavController">
+              <li ng-repeat="navItem in navCollection" class="{{navClass(navItem.id)}}">
+              <a href="" ng-click="navigateToSection(navItem.id)">
+                <i class="icon-chevron-right"></i>
+                {{navItem.title}}
+                </a>
+              </li>
+            </ul>
+          </div>
+          <div class="span9" ng-view>
+            <!-- Add your site or application content here -->
+          </div>
+        </div>
 
         <script src="scripts/vendor/angular.js"></script>
 
         <!-- build:js scripts/scripts.js -->
+        <script src="scripts/vendor/jquery-1.9.1.min.js"></script>
+        <script src="scripts/vendor/bootstrap.js"></script>
+
         <script src="scripts/app.js"></script>
         <script src="scripts/controllers/main.js"></script>
+        <script src="scripts/controllers/Pages.js"></script>
         <!-- endbuild -->
 
         <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
