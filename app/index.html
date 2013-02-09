@@ -22,7 +22,7 @@
             <script src="scripts/vendor/es5-shim.min.js"></script>
             <script src="scripts/vendor/json3.min.js"></script>
         <![endif]-->
-        <div class="container">
+        <div class="container-fluid">
           <div class="span2 bs-docs-sidebar">
             <ul class="nav nav-list bs-docs-sidenav" ng-controller="NavController">
               <li ng-repeat="navItem in navCollection" class="{{navClass(navItem.id)}}">
@@ -33,7 +33,7 @@
               </li>
             </ul>
           </div>
-          <div class="span9" ng-view>
+          <div class="span10" ng-view>
             <!-- Add your site or application content here -->
           </div>
         </div>
