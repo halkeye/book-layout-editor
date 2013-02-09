@@ -4,7 +4,7 @@ var bookLayoutEditorApp;
 (function () {
   'use strict';
 
-  bookLayoutEditorApp = angular.module('bookLayoutEditorApp', [])
+  bookLayoutEditorApp = angular.module('bookLayoutEditorApp', ['ui.bootstrap'])
     .config(['$routeProvider', function($routeProvider) {
       $routeProvider
         .when('/', {
