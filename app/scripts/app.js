@@ -43,6 +43,11 @@ var bookLayoutEditorApp;
     };
   });
 
+  bookLayoutEditorApp.filter('langName', function() {
+    return function(text) {
+      return window.getLanguageName(text);
+    };
+  });
   bookLayoutEditorApp.service('pageTitleSetter', function($window) {
     this.title = function(documentTitle) {
       $window.document.title = "Page Editor - " + documentTitle;
@@ -56,7 +61,15 @@ var bookLayoutEditorApp;
     // All Pages
     $scope.book_pages = $rootScope.book_data.PAGES;
     // All Languages
-    $scope.book_page_languages = Object.keys($rootScope.book_data.PAGES) || ['en'];
+    var langs =  Object.keys($rootScope.book_data.PAGES);
+    if (!langs.length) {
+      $scope.book_page_languages = [{ val: 'en', name: window.getLanguageName('en')}];
+    } else {
+      $scope.book_page_languages = [];
+      angular.forEach(langs, function(val) {
+        $scope.book_page_languages.push({ val: val, name: window.getLanguageName(val)});
+      });
+    }
 
     $scope.navCollection = [
       {id:'home', title:'Home'}

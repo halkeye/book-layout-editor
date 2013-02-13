@@ -32,12 +32,9 @@
                 </a>
               </li>
               <li>
-                Lang:
-                <div>
-                  <select style="width: inherit " ng-model="book_language" ng-options="value for value in book_page_languages"></select>
-                </div>
+                <select style="width: inherit " ng-model="book_language" ng-options="obj.val as obj.name for obj in book_page_languages"></select>
               </li>
-              <li><h3>{{book_language | uppercase}}</h3></li>
+              <li><h3>{{book_language | langName}}</h3></li>
               <li ng-repeat="bookItem in book_pages[book_language]" class="{{navClass('pages/'+book_language+'/' + ($index+1))}}">
               <a href="" ng-click="navigateToSection('pages/'+book_language+'/' + ($index+1))">
                 <i class="icon-chevron-right"></i>
@@ -61,6 +58,7 @@
 
         <!-- build:js scripts/scripts.js -->
         <script src="scripts/vendor/jquery-1.9.1.min.js"></script>
+        <script src="scripts/vendor/lang.js"></script>
         <script src="scripts/vendor/ui-bootstrap-0.1.0.min.js"></script>
         <script src="scripts/vendor/ui-bootstrap-tpls-0.1.0.min.js"></script>
 
