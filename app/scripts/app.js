@@ -4,36 +4,58 @@ var bookLayoutEditorApp;
 (function () {
   'use strict';
 
-  bookLayoutEditorApp = angular.module('bookLayoutEditorApp', ['ui.bootstrap'])
-    .config(['$routeProvider', function($routeProvider) {
-      $routeProvider
-        .when('/', {
-          templateUrl: 'views/main.html',
-          controller: 'MainCtrl'
-        })
-        .when('/pages/:pageNumber', {
-          templateUrl: 'views/pages.html',
-          controller: 'PagesCtrl'
-        })
-        .otherwise({
-          redirectTo: '/'
-        });
-    }]);
+  bookLayoutEditorApp = angular.module('bookLayoutEditorApp', ['ui.bootstrap']);
+  bookLayoutEditorApp.config(['$routeProvider', function($routeProvider) {
+    $routeProvider
+      .when('/', {
+        templateUrl: 'views/main.html',
+        controller: 'MainCtrl'
+      })
+      .when('/pages/:lang/new', {
+        templateUrl: 'views/pageNew.html',
+        controller: 'PagesCtrl'
+      })
+      .when('/pages/:lang/:pageNumber', {
+        templateUrl: 'views/pages.html',
+        controller: 'PagesCtrl'
+      })
+      .otherwise({
+        redirectTo: '/'
+      });
+  }]);
 
-  bookLayoutEditorApp.controller("NavController", ["$scope", "$http", "$location", "$rootScope", "$route", function($scope, $http, $location, $rootScape, $route) { 
+  bookLayoutEditorApp.run( function($rootScope, $location) {
+    $rootScope.book_data = {
+      "PAGES": {
+        "en": [
+          {},{},{},{},{},{}
+        ]
+      }
+    };
+  });
+
+  bookLayoutEditorApp.service('pageTitleSetter', function($window) {
+    this.title = function(documentTitle) {
+      $window.document.title = "Page Editor - " + documentTitle;
+    };
+  }, {$inject:'$window'});
+
+  bookLayoutEditorApp.controller("NavController", ["$scope", "$http", "$location", "$rootScope", "$route", function($scope, $http, $location, $rootScope, $route) {
+    $scope.book_pages = $rootScope.book_data.PAGES.en; // FIXME do it per language
     $scope.navCollection = [
       {id:'home', title:'Home'}
     ];
-    for (var pageNum = 1; pageNum < 10; pageNum++) {
-      $scope.navCollection.push({id:'pages/'+pageNum, title:'Page ' + pageNum});
-    }
+
     $scope.navClass = function (page) {
       var currentRoute = $location.path().substring(1) || 'home';
       return page === currentRoute ? 'active' : '';
     };
 
     $scope.navigateToSection = function (sectionID) {
-      $location.url('/'+sectionID);
+      $location.path('/'+sectionID);
+    };
+    $scope.navigateToPage = function (lang,pageNum) {
+      $location.path('/pages/'+lang+'/'+pageNum);
     };
   }]);
 }());

@@ -31,6 +31,19 @@
                 {{navItem.title}}
                 </a>
               </li>
+              <li><h3>EN</h3></li>
+              <li ng-repeat="bookItem in book_pages" class="{{navClass('pages/en/' + ($index+1))}}">
+              <a href="" ng-click="navigateToSection('pages/en/' + ($index+1))">
+                <i class="icon-chevron-right"></i>
+                Page {{$index+1}}
+                </a>
+              </li>
+              <li class="{{navClass('pages/en/new')}}">
+              <a href="" ng-click="navigateToSection('pages/en/new')">
+                <i class="icon-plus"></i>
+                Add Page
+                </a>
+              </li>
             </ul>
           </div>
           <div class="span10" ng-view>

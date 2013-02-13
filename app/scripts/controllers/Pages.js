@@ -3,7 +3,8 @@
 (function () {
   'use strict';
 
-  function PagesCtrl($scope, $params, $dialog) {
+  function PagesCtrl($scope, $params, $location, $dialog, pageTitleSetter,$rootScope) {
+    pageTitleSetter.title("Edit Page " + $params.pageNumber);
 
     $scope.modalShown = false;
     $scope.opts = {
@@ -14,7 +15,16 @@
       controller: 'ShowViewDialogController'
     };
 
+    $scope.lang = $params.lang || 'en';
     $scope.pageNumber = $params.pageNumber;
+
+    $scope.add_page = function(lang) {
+      if (!$rootScope.book_data.PAGES) $rootScope.book_data.PAGES = {};
+      if (!$rootScope.book_data.PAGES[lang]) $rootScope.book_data.PAGES[lang] = [];
+      $rootScope.book_data.PAGES[lang].push({});
+      var newPageNum = $rootScope.book_data.PAGES[lang].length;
+      $location.path("/pages/" + lang + "/" + newPageNum);
+    };
     $scope.showViews = function($event) {
       var d = $dialog.dialog($scope.opts);
       d.open().then(function(result){
@@ -28,7 +38,7 @@
     };
   }
 
-  PagesCtrl.$inject = ['$scope','$routeParams','$dialog'];
+  PagesCtrl.$inject = ['$scope','$routeParams','$location', '$dialog','pageTitleSetter','$rootScope'];
 
   window.bookLayoutEditorApp.controller('PagesCtrl',PagesCtrl);
   window.bookLayoutEditorApp.controller('ShowViewDialogController',function($scope, dialog) {
