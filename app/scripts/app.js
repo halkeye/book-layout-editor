@@ -27,6 +27,9 @@ var bookLayoutEditorApp;
   bookLayoutEditorApp.run( function($rootScope, $location) {
     $rootScope.book_data = {
       "PAGES": {
+        "fr": [
+          {},{},{}
+        ],
         "en": [
           {},{},{},{},{},{}
         ]
@@ -41,7 +44,14 @@ var bookLayoutEditorApp;
   }, {$inject:'$window'});
 
   bookLayoutEditorApp.controller("NavController", ["$scope", "$http", "$location", "$rootScope", "$route", function($scope, $http, $location, $rootScope, $route) {
-    $scope.book_pages = $rootScope.book_data.PAGES.en; // FIXME do it per language
+
+    // Default Value
+    $scope.book_language = 'en';
+    // All Pages
+    $scope.book_pages = $rootScope.book_data.PAGES;
+    // All Languages
+    $scope.book_page_languages = Object.keys($rootScope.book_data.PAGES) || ['en'];
+
     $scope.navCollection = [
       {id:'home', title:'Home'}
     ];

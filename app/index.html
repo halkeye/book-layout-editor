@@ -31,15 +31,21 @@
                 {{navItem.title}}
                 </a>
               </li>
-              <li><h3>EN</h3></li>
-              <li ng-repeat="bookItem in book_pages" class="{{navClass('pages/en/' + ($index+1))}}">
-              <a href="" ng-click="navigateToSection('pages/en/' + ($index+1))">
+              <li>
+                Lang:
+                <label ng-repeat="n in book_page_languages" style="display:inline">
+                  <input type="radio" name="book_language" ng-model="$parent.book_language" ng-value="n" /> {{n}}
+                </label>
+              </li>
+              <li><h3>{{book_language | uppercase}}</h3></li>
+              <li ng-repeat="bookItem in book_pages[book_language]" class="{{navClass('pages/'+book_language+'/' + ($index+1))}}">
+              <a href="" ng-click="navigateToSection('pages/'+book_language+'/' + ($index+1))">
                 <i class="icon-chevron-right"></i>
                 Page {{$index+1}}
                 </a>
               </li>
-              <li class="{{navClass('pages/en/new')}}">
-              <a href="" ng-click="navigateToSection('pages/en/new')">
+              <li class="{{navClass('pages/'+book_language+'/new')}}">
+              <a href="" ng-click="navigateToSection('pages/'+book_language+'/new')">
                 <i class="icon-plus"></i>
                 Add Page
                 </a>
