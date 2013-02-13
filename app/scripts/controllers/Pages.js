@@ -7,6 +7,10 @@
     pageTitleSetter.title("Edit Page " + $params.pageNumber);
 
     $scope.modalShown = false;
+    $scope.page_box_style = {
+      'height': '768px',
+      'width': '1024px'
+    };
     $scope.opts = {
       backdrop: true,
       keyboard: true,
