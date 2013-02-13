@@ -33,9 +33,9 @@
               </li>
               <li>
                 Lang:
-                <label ng-repeat="n in book_page_languages" style="display:inline">
-                  <input type="radio" name="book_language" ng-model="$parent.book_language" ng-value="n" /> {{n}}
-                </label>
+                <div>
+                  <select style="width: inherit " ng-model="book_language" ng-options="value for value in book_page_languages"></select>
+                </div>
               </li>
               <li><h3>{{book_language | uppercase}}</h3></li>
               <li ng-repeat="bookItem in book_pages[book_language]" class="{{navClass('pages/'+book_language+'/' + ($index+1))}}">

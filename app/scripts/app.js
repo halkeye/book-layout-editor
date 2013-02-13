@@ -27,6 +27,12 @@ var bookLayoutEditorApp;
   bookLayoutEditorApp.run( function($rootScope, $location) {
     $rootScope.book_data = {
       "PAGES": {
+        "ja": [
+          {},{},{}
+        ],
+        "de": [
+          {},{},{}
+        ],
         "fr": [
           {},{},{}
         ],
