@@ -3,7 +3,9 @@
 (function () {
   'use strict';
 
-  function PagesCtrl($scope, $params, $location, $dialog, pageTitleSetter,$rootScope) {
+  window.bookLayoutEditorApp.controller('PagesCtrl',[
+    '$scope','$routeParams','$location', '$dialog','pageTitleSetter','$rootScope',
+    function($scope, $params, $location, $dialog, pageTitleSetter,$rootScope) {
     pageTitleSetter.title("Edit Page " + $params.pageNumber);
 
     $scope.modalShown = false;
@@ -40,11 +42,8 @@
       });
       console.log('clicked show views');
     };
-  }
+  }]);
 
-  PagesCtrl.$inject = ['$scope','$routeParams','$location', '$dialog','pageTitleSetter','$rootScope'];
-
-  window.bookLayoutEditorApp.controller('PagesCtrl',PagesCtrl);
   window.bookLayoutEditorApp.controller('ShowViewDialogController',function($scope, dialog) {
     $scope.view = "UNREAD";
     $scope.viewOptions = [
