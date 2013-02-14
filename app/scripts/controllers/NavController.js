@@ -3,8 +3,6 @@
 (function () {
   'use strict';
   window.bookLayoutEditorApp.controller('NavController', ['$scope', '$http', '$location', '$rootScope', '$route', function($scope, $http, $location, $rootScope, $route) {
-
-    console.log('here');
     // Default Value
     $scope.book_language = 'en';
     // All Pages
