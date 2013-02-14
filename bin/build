@@ -2,7 +2,7 @@
 git clone $(git remote show origin | grep 'Fetch URL' | cut -c 14-) site && \
   cd site && \
   git checkout gh-pages && \
-  rsync -vazt --delete ../dist/ ./ && \
+  rsync --exclude=.git -vazt --delete ../dist/ ./ && \
   git add -f . && \
   git commit -am "updating gh-pages"  && \
   git push origin gh-pages && \
