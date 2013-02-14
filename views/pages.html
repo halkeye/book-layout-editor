@@ -1,0 +1,16 @@
+<section id="Page_{{pageNumber}}">
+  <div class="navbar">
+    <div class="navbar-inner">
+      <span class="brand">Page {{pageNumber}}</span>
+      <ul class="nav">
+        <li><a class="btn" href=""><i class="icon-plus"></i> Add Line</a></li>
+        <li><a class="btn" href=""><i class="icon-book"></i> Edit Styles</a></li>
+        <li><a class="btn" href=""><i class="icon-minus"></i> Delete Page</a></li>
+        <li><a class="btn" href=""><i class="icon-th"></i> Toggle Grid</a></li>
+        <li><a class="btn" href="" ng-click='showViews()'><i class="icon-eye-open"></i> Change View</a></li>
+      </ul>
+    </div>
+  </div>
+  <div id="page_contents" class="hero-unit" ng-style="page_box_style" drop-file-zone="1">
+  </div>
+</section>
