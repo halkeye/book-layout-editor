@@ -174,4 +174,11 @@ module.exports = function( grunt ) {
       done(err);
     });
   });
+
+  grunt.registerTask('gh-pages', 'Update gh-pages', function() {
+    require('child_process').exec('git checkout gh-pages && rsync --delete -vazt dist/* . && git add . && git commit -m "update pages" && git checkout master', function (err, stdout) {
+      grunt.log.write(stdout);
+      done(err);
+    });
+  });
 };
