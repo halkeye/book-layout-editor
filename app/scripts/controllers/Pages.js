@@ -3,6 +3,7 @@
 (function () {
   'use strict';
 
+console.debug("Creating new Controller - PagesCtrl");
   window.bookLayoutEditorApp.controller('PagesCtrl',[
     '$scope','$routeParams','$location', '$dialog','pageTitleSetter','$rootScope',
     function($scope, $params, $location, $dialog, pageTitleSetter,$rootScope) {

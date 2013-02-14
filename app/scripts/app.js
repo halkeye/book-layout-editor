@@ -49,11 +49,11 @@ var bookLayoutEditorApp;
     };
   });
 
-  bookLayoutEditorApp.service('pageTitleSetter', function($window) {
+  bookLayoutEditorApp.service('pageTitleSetter', ['$window', function($window) {
     this.title = function(documentTitle) {
       $window.document.title = "Page Editor - " + documentTitle;
     };
-  }, {$inject:'$window'});
+  }]);
 
 }());
 
