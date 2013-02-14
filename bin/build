@@ -1,0 +1,2 @@
+#!/bin/sh
+git clone $(git remote show origin | grep 'Fetch URL' | cut -c 14-) site; cd site; git checkout gh-pages; rsync -vazt --delete ../dist/ ./; git add -f .; git commit -am "updating gh-pages" ; git push origin gh-pages; cd ..; rm -rf site;
