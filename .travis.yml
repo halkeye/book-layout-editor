@@ -33,6 +33,7 @@ before_script:
   - gem install optipng
   - npm install bower -g
   - npm install yeoman -g
+  - npm install testacular -g
   - bower install
 script:
   # We want to gate on passing tests and a successful build
